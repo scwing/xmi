@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>prototype 实例化的公用方法和属性</title>
+	</head>
+	<body>
+		
+		<script type="text/javascript">
+			function Person(name,age){
+				this.name = name;
+				this.age=  age;
+			}
+			//所有构造函数的实例公用方法
+			Person.prototype.say = function(){
+				alert(`我的名字是${this.name}`)
+			}
+			//类的实例 new实例化对象
+			var p1 = new Person('mumu',20);
+			var p2 = new Person('lh',30);
+			//直接调用得到函数的返回值 默认undefined
+			var p3 = Person('mumu',20);
+		</script>
+	</body>
+</html>

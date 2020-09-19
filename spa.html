@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			.pages>div{
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<p><a href="#/">首页</a> | <a href="#/about">关于我们</a> | <a href="#/user">用户中心</a></p>
+		<div class="pages">
+			<div id="home">
+				<h1>首页内容</h1>
+			</div>
+			<div id="about">
+				<h1>关于我们内容</h1>
+			</div>
+			<div id="user">
+				<h1>用户中心内容</h1>
+			</div>
+		</div>
+		
+		
+		<script type="text/javascript">
+			// router 页面切换的配置数组
+			//做一个配置让hash 对应 页面元素节点
+			const router = [
+				{path:'/',component:home},
+				{path:'/about',component:about},
+				{path:'/user',component:user},
+			]
+			var currentView = router[0]; //默认显示页面
+			// 当hash发生改变
+			location.hash = "#"+currentView.path;
+			//只有hash发生改变，就会触发onchange事件
+			window.onhashchange = function(e){
+				var hash = window.location.hash.slice(1); //获取当前hash值
+				//遍历每一个配置项
+				router.forEach((item,index)=>{
+					if(hash == item.path){
+						currentView.component.style.display = 'none';
+						item.component.style.display = "block";
+						currentView = router[index]; //重新设置当前显示页面
+					}
+				})
+			}
+		</script>
+	</body>
+</html>
